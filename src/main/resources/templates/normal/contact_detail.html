@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+	<title th:text ="${title}"></title>
+</head>
+
+<body>
+	<section>
+		<div class="card ml-3 mr-3">
+			<div class="card-body">
+				
+				<!-- Message response -->
+		<div class="container" th:if ="${session.message}" >  
+		<div th:classappend ="${'alert-'+session.message.type}" 
+		 class="alert text-center" role="alert">
+             <span th:text ="${session.message.content}"></span>
+            </div>
+           <th:block th:text ="${#session.removeAttribute('message')}"></th:block>
+            </div>
+				
+			<div class="container text-center">
+			<img style="width: 200px; height: 200px;" th:src="@{'/img/'+${contact.image}}" alt="" class="contact_image" />
+			<h3 mt-3><span th:text = "${contact.name +' ('+ contact.nickName+')'}"></span></h3>
+			</div>
+			<!-- user details in table format -->
+			<div class="container mt-3 text-center">
+				
+				<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#ID</th>
+      <th scope="col" th:text ="${'SCM'+contact.cid}">name</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+	  <tr>
+      <th scope="row">Name</th>
+      <td><span th:text ="${contact.name +' ('+ contact.nickName+')'}"></span></td>
+    </tr>
+    <tr>
+      <th scope="row">Email</th>
+      <td><span th:text ="${contact.email}"></span></td>
+    </tr>
+    <tr>
+      <th scope="row">Phone</th>
+      <td><span th:text ="${contact.phone}"></span></td>
+    </tr>
+    <tr>
+      <th scope="row">Work</th>
+      <td><span th:text ="${contact.work}"></span></td>
+    </tr>
+    <tr>
+      <th scope="row">Description</th>
+      <td><span th:text ="${contact.description}"></span></td>
+    </tr>
+   
+  </tbody>
+</table>
+				
+			</div>
+			
+			<div class="container text-center mt-3">
+				<form th:action="@{'/user/update-contact/'+${contact.cid}}" 
+				method="post" style="display: inline;"> 
+		  <button  type="submit"  class="btn btn-primary">Update</button>
+	         </form>
+				<a href="#" th:onclick="|deleteContact(${contact.cid})|"  class="btn btn-danger">Delete</a>
+			</div>
+			</div>
+			
+		</div>
+	</section>
+</body>

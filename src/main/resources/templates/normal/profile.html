@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{normal/base::layout(~{::section})}">
+
+<head>
+	<meta charset="UTF-8" />
+	<title th:text ="${title}"></title>
+</head>
+
+<body>
+	<section>
+		<div class="card ml-3 mr-3">
+			<div class="card-body">
+				<h1 class="text-center">Your Profile</h1>
+			<div class="container text-center">
+			<img style="width: 200px; height: 200px;" src="/img/profilepic.png" class="profile_image" />
+			<h3 mt-3><span th:text = "${user.name}"></span></h3>
+			</div>
+			<!-- user details in table format -->
+			<div class="container mt-3 text-center">
+				
+				<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#ID</th>
+      <th scope="col" th:text ="${'SCM-USER'+user.id}"></th>
+      
+    </tr>
+  </thead>
+  <tbody>
+	  <tr>
+      <th scope="row">Name</th>
+      <td><span th:text ="${user.name}"></span></td>
+    </tr>
+    <tr>
+      <th scope="row">Email</th>
+      <td><span th:text ="${user.email}"></span></td>
+    </tr>
+    
+    <tr>
+      <th scope="row">Role</th>
+      <td><span th:text ="${user.role}"></span></td>
+    </tr>
+   
+    <tr>
+      <th scope="row">About</th>
+      <td><span th:text ="${user.about}"></span></td>
+    </tr>
+   
+  </tbody>
+</table>
+				
+			</div>
+			
+		<!--	<div class="container text-center mt-3">
+				<form th:action="@{'/user/update-contact/'+${contact.cid}}" 
+				method="post" style="display: inline;"> 
+		  <button  type="submit"  class="btn btn-primary">Update</button>
+	         </form>
+				<a href="#" th:onclick="|deleteContact(${contact.cid})|"  class="btn btn-danger">Delete</a>
+			</div>-->
+			</div>
+			
+		</div>
+	</section>
+</body>
